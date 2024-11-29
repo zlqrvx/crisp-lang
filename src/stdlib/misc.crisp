@@ -1,0 +1,9 @@
+
+defun why_is_this_function_in_stdlib() {
+    print("I don't know!")
+}
+
+
+alias_function(diag, 
+               lisp_symbol("diagonal-matrix", "cl-num-utils.matrix"))
+

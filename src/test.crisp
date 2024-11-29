@@ -1,0 +1,121 @@
+
+# defstruct mystruct {
+#   slot1
+#   slot2
+# }
+
+# defclass myclass(mySuperClass) {
+#   slot1
+#   slot2
+# }
+
+# defmethod my_method(x:fixnum,y) {
+#   x
+# }
+
+
+defun my_func(x, y) {
+  print("hello")
+  if(x != y, print("yes"), print("no"))
+  let a = 10
+  let b = a*sin(x*2) + y
+  b
+}
+
+
+
+defun another_func(x) {
+  if(x == 10) {
+    print("It's a 10!")
+  } elif (x==3) {
+    print("pirate!")
+  } else {
+    print("Something else")
+  }
+  x*2+3
+}
+
+
+defun gimme_a_list(lst) {
+  print("hello again")
+  lst[0] + 10 
+}
+
+
+# this will fail since the parser will parse it as the symbol followed by a setq
+# this is desired behaviour since the let binding has no body
+# let myvar = 666
+defun let_test() {
+"this is a test function that does nothing useful!"
+  let x = 100
+  print(x)
+  33
+}
+
+
+defun fact(x, accum) {
+  if (x == 0) {
+    [0, 1]
+  } else {
+    [x-1, x*accum]
+  }
+}
+
+
+defun fact_optim(x, accum) {
+  declare(optimize(speed(3), safety(0)))
+  declare(type(integer, x, accum))
+  if (x == 0) {
+    [0, 1]
+  } else {
+    [x-1, x*accum]
+  }
+}
+
+defun lfp_iter(f, n, ac) {
+  let new = fact(n, ac)
+  if (new[1] - ac < 0.01) {
+     new
+  } else {
+    lfp_iter(f, new[0], new[1])
+  }
+}
+
+
+# lfp_iter('fact, 4, 1)
+
+# lambda((x), x*x)
+
+defun square(x) {
+  sin(x) / x
+}
+
+
+# defun ggplot_test() {
+#   # Some plotting:
+#   let x = linspace(0.01,10, 100)
+#   let y = petalisp:lazy(quote(square), x)
+
+#   ggplot(ggplot:aes(x=compute(x), y=compute(y)),
+#     ggplot:geom_point(color="blue"),
+#     ggplot:labs(title="my plot", x="x-axis", y="y-axis"))
+# }
+
+
+# defun ggplot_normal() {
+#   # Some plotting:
+#   let x = linspace(0,2, 100)
+#   let y = petalisp:lazy(quote(normal_distribution), x)
+
+#   ggplot(ggplot:aes(x=compute(x), y=compute(y)),
+#     ggplot:geom_point(color="orange"),
+#     ggplot:labs(title="my plot", x="x-axis", y="y-axis"))
+# }
+
+
+# ggplot(ggplot:aes(x=compute(x), y=compute(y)),
+#   ggplot:geom_line(color="green"),
+#   ggplot:geom_point(color="blue"),
+#   ggplot:geom_col(color="orange"),
+#   ggplot:labs(title="my plot", x="x-axis", y="y-axis"))
+

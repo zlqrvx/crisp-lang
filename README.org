@@ -1,0 +1,14 @@
+* Crisp 
+
+** Usage
+
+** Installation
+#+begin_src lisp
+(require 'asdf)
+(asdf:load-asd "/home/zlqrvx/Projects/crisp/crisp.asd")
+(asdf:load-system :crisp)
+(in-package :crisp-user)
+(crisp-compile-file "test.crisp")
+(my-func 3 4)
+#+end_src
+
