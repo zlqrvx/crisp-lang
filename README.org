@@ -1,6 +1,52 @@
 * Crisp 
+The crisp language is a thin syntax wrapper over common lisp. Its aim is to provide the user with a familiar syntax that is intuitive and easy to use for data analysis and scientific programming, all the while retaining a tight interoperability with common lisp.
 
 ** Usage
+#+begin_src crisp
+defun my_func(x, y) {
+"This is a silly little function for demonstration purposes."
+  # You can print a string in the obvious way
+  print("hello")
+  # The != operator does what you expect
+  if(x != y) {
+       print("they are not equal")
+  } else {
+       print("they are equal")
+  }
+  # You can declare local variables with let bindings
+  let a = x + 10
+  let b = a*sin(x*2) + y
+  # The last form is explicitly returned
+  b
+}
+
+# You can call my_func with:
+my_func(3,4)
+
+
+# Define one step of a tail-recursive factorial
+defun fact(x, accum) {
+  if (x == 0) {
+    # Lists are constructed with square brackets
+    [0, 1]
+  } else {
+    [x-1, x*accum]
+  }
+}
+
+# Define a function to perform least fix-point iteration on the first argument
+defun lfp_iter(f, n, ac) {
+  let new = fact(n, ac)
+  if (new[1] - ac < 0.01) {
+     new
+  } else {
+    lfp_iter(f, new[0], new[1])
+  }
+}
+
+# Now calculate the factorial of 4
+lfp_iter('fact, 4, 1)
+#+end_src
 
 ** Installation
 #+begin_src lisp
